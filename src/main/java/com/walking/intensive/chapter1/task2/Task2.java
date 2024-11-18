@@ -33,12 +33,65 @@ package com.walking.intensive.chapter1.task2;
  */
 public class Task2 {
     public static void main(String[] args) {
-//        Для собственных проверок можете делать любые изменения в этом методе
+
+        System.out.println(getFlatLocation(20, 7, 340));
     }
 
     static String getFlatLocation(int floorAmount, int entranceAmount, int flatNumber) {
-        //        Место для вашего кода
 
-        return null; // Заглушка. При реализации - удалить
+        int flatAmountOnFloor = 4;
+        int flatAmountInEntrance = floorAmount * flatAmountOnFloor;
+        int flatNumberInEntrance;
+        int flatNumberOnFloor;
+        int entranceNumber;
+        int floorNumber;
+        String locationOnFloor = "";
+        String flatLocation = "";
+
+        if (flatNumber < 1 || entranceAmount < 1 || floorAmount < 1) {
+            return "Некорректные входные данные";
+        } else if (flatNumber > flatAmountOnFloor * floorAmount * entranceAmount) {
+            return "Такой квартиры не существует";
+        }
+
+        int proposedEntrance = flatNumber / flatAmountInEntrance;
+
+        if (flatNumber % flatAmountInEntrance != 0) {
+            entranceNumber = proposedEntrance + 1;
+        } else {
+            entranceNumber = proposedEntrance;
+        }
+
+        flatNumberInEntrance = flatNumber - (flatAmountInEntrance * (entranceNumber - 1));
+        int proposedFloor = flatNumberInEntrance / flatAmountOnFloor;
+
+        if (flatNumberInEntrance % flatAmountOnFloor != 0) {
+            floorNumber = proposedFloor + 1;
+        } else {
+            floorNumber = proposedFloor;
+        }
+
+        flatNumberOnFloor = flatNumberInEntrance - (flatAmountOnFloor * (floorNumber - 1));
+
+        switch (flatNumberOnFloor) {
+            case 1:
+                locationOnFloor += "слева от лифта, влево";
+                break;
+            case 2:
+                locationOnFloor += "слева от лифта, вправо";
+                break;
+            case 3:
+                locationOnFloor += "справа от лифта, влево";
+                break;
+            case 4:
+                locationOnFloor += "справа от лифта, вправо";
+                break;
+            default:
+                System.out.println("default");
+        }
+
+        flatLocation = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж, " + locationOnFloor;
+
+        return flatLocation;
     }
 }
