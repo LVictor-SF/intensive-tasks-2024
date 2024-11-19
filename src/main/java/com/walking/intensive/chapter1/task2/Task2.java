@@ -46,52 +46,38 @@ public class Task2 {
         int entranceNumber;
         int floorNumber;
         String locationOnFloor = "";
-        String flatLocation = "";
 
         if (flatNumber < 1 || entranceAmount < 1 || floorAmount < 1) {
             return "Некорректные входные данные";
-        } else if (flatNumber > flatAmountOnFloor * floorAmount * entranceAmount) {
+        }
+
+        if (flatNumber > flatAmountOnFloor * floorAmount * entranceAmount) {
             return "Такой квартиры не существует";
         }
 
-        int proposedEntrance = flatNumber / flatAmountInEntrance;
+        entranceNumber = flatNumber / flatAmountInEntrance;
 
         if (flatNumber % flatAmountInEntrance != 0) {
-            entranceNumber = proposedEntrance + 1;
-        } else {
-            entranceNumber = proposedEntrance;
+            entranceNumber += 1;
         }
 
         flatNumberInEntrance = flatNumber - (flatAmountInEntrance * (entranceNumber - 1));
-        int proposedFloor = flatNumberInEntrance / flatAmountOnFloor;
+        floorNumber = flatNumberInEntrance / flatAmountOnFloor;
 
         if (flatNumberInEntrance % flatAmountOnFloor != 0) {
-            floorNumber = proposedFloor + 1;
-        } else {
-            floorNumber = proposedFloor;
+            floorNumber += 1;
         }
 
         flatNumberOnFloor = flatNumberInEntrance - (flatAmountOnFloor * (floorNumber - 1));
 
-        switch (flatNumberOnFloor) {
-            case 1:
-                locationOnFloor += "слева от лифта, влево";
-                break;
-            case 2:
-                locationOnFloor += "слева от лифта, вправо";
-                break;
-            case 3:
-                locationOnFloor += "справа от лифта, влево";
-                break;
-            case 4:
-                locationOnFloor += "справа от лифта, вправо";
-                break;
-            default:
-                System.out.println("default");
-        }
+        locationOnFloor = switch (flatNumberOnFloor) {
+            case 1 -> "слева от лифта, влево";
+            case 2 -> "слева от лифта, вправо";
+            case 3 -> "справа от лифта, влево";
+            case 4 -> "справа от лифта, вправо";
+            default -> locationOnFloor;
+        };
 
-        flatLocation = flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж, " + locationOnFloor;
-
-        return flatLocation;
+        return flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж, " + locationOnFloor;
     }
 }
