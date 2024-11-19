@@ -15,14 +15,16 @@ package com.walking.intensive.chapter1.task1;
 public class Task1 {
     public static void main(String[] args) {
 
-        int age = 514;
+        int age = 651684;
 
         System.out.println(getAgeString(age));
     }
 
     static String getAgeString(int age) {
 
-        if (age % 10 == 1 && age % 100 != 11) {
+        if (age < 0) {
+            return "Некорректный ввод";
+        } else if (age % 10 == 1 && age % 100 != 11) {
             return "Вам " + age + " год";
         } else if (age % 10 > 1 && age % 10 < 5 && age % 100 != 12 && age % 100 != 13 && age % 100 != 14) {
             return "Вам " + age + " года";
