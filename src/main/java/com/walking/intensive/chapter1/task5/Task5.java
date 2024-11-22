@@ -76,7 +76,7 @@ public class Task5 {
 
         triangleMedians [0] = Math.sqrt(2 * Math.pow(a, 2) + 2 * Math.pow(b, 2) - Math.pow(c, 2)) / 2;
         triangleMedians [1] = Math.sqrt(2 * Math.pow(b, 2) + 2 * Math.pow(c, 2) - Math.pow(a, 2)) / 2;
-        triangleMedians [2] = Math.sqrt(2 * Math.pow(c, 2) + 2 * Math.pow(b, 2) - Math.pow(a, 2)) / 2;
+        triangleMedians [2] = Math.sqrt(2 * Math.pow(c, 2) + 2 * Math.pow(a, 2) - Math.pow(b, 2)) / 2;
 
         Arrays.sort(triangleMedians);
 
@@ -98,9 +98,9 @@ public class Task5 {
 
         double [] triangleBisectors = new double[3];
 
-        triangleBisectors [0] = Math.sqrt(a * b * (a + b + c) * (a + b - c)) / a + b;
-        triangleBisectors [1] = Math.sqrt(a * c * (a + b + c) * (a + c - b)) / a + c;
-        triangleBisectors [2] = Math.sqrt(c * b * (a + b + c) * (c + b - a)) / c + b;
+        triangleBisectors [0] = Math.sqrt(a * b * (a + b + c) * (a + b - c)) / (a + b);
+        triangleBisectors [1] = Math.sqrt(a * c * (a + b + c) * (a + c - b)) / (a + c);
+        triangleBisectors [2] = Math.sqrt(c * b * (a + b + c) * (c + b - a)) / (c + b);
 
         Arrays.sort(triangleBisectors);
 
@@ -184,7 +184,11 @@ public class Task5 {
             return -1;
         }
 
-        return 0; // Заглушка. При реализации - удалить
+        double cosA = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
+
+        double sinA = Math.sqrt(1 - cosA * cosA);
+
+        return (c * b * sinA) / 2;
     }
 
     static boolean isRealTriangle(double a, double b, double c) {
@@ -198,16 +202,10 @@ public class Task5 {
 
     static double getAngle (double a, double b, double c) {
 
-        double cosA = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2 * a * b);
+        double cosA = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
 
-        return Math.acos(cosA) * 180 * Math.PI;
+        return (Math.acos(cosA) * 180) / Math.PI;
 
     }
 
-    static double getSinA (double a, double b, double c) {
-
-        double cosA = (Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(c, 2)) / (2 * a * b);
-
-        return Math.sqrt((1 - Math.sqrt(cosA)));
-    }
 }
