@@ -29,7 +29,7 @@ public class Task4 {
     public static void main(String[] args) {
         double a = 0;
         double b = 0;
-        double c = 0;
+        double c = 5;
 
         System.out.println(solveEquation(a, b, c));
 
@@ -38,8 +38,8 @@ public class Task4 {
     static String solveEquation(double a, double b, double c) {
 
         double d = b * b - (4 * a * c);
-        double x1 = 0;
-        double x2 = 0;
+        double x1;
+        double x2;
 
         if (a == 0 & b == 0 & c == 0) {
             return "Бесконечное множество решений";
