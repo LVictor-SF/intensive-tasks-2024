@@ -25,7 +25,6 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getAreaByHeron(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return -1;
         }
@@ -43,16 +42,14 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getHeights(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return new double[0];
         }
 
-        double [] triangleHeights = new double[3];
-
-        triangleHeights [0] = 2 * getAreaByHeron(a, b, c) / a;
-        triangleHeights [1] = 2 * getAreaByHeron(a, b, c) / b;
-        triangleHeights [2] = 2 * getAreaByHeron(a, b, c) / c;
+        double[] triangleHeights = new double[3];
+        triangleHeights[0] = 2 * getAreaByHeron(a, b, c) / a;
+        triangleHeights[1] = 2 * getAreaByHeron(a, b, c) / b;
+        triangleHeights[2] = 2 * getAreaByHeron(a, b, c) / c;
 
         Arrays.sort(triangleHeights);
 
@@ -67,16 +64,14 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getMedians(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return new double[0];
         }
 
-        double [] triangleMedians = new double[3];
-
-        triangleMedians [0] = Math.sqrt(2 * Math.pow(a, 2) + 2 * Math.pow(b, 2) - Math.pow(c, 2)) / 2;
-        triangleMedians [1] = Math.sqrt(2 * Math.pow(b, 2) + 2 * Math.pow(c, 2) - Math.pow(a, 2)) / 2;
-        triangleMedians [2] = Math.sqrt(2 * Math.pow(c, 2) + 2 * Math.pow(a, 2) - Math.pow(b, 2)) / 2;
+        double[] triangleMedians = new double[3];
+        triangleMedians[0] = Math.sqrt(2 * Math.pow(a, 2) + 2 * Math.pow(b, 2) - Math.pow(c, 2)) / 2;
+        triangleMedians[1] = Math.sqrt(2 * Math.pow(b, 2) + 2 * Math.pow(c, 2) - Math.pow(a, 2)) / 2;
+        triangleMedians[2] = Math.sqrt(2 * Math.pow(c, 2) + 2 * Math.pow(a, 2) - Math.pow(b, 2)) / 2;
 
         Arrays.sort(triangleMedians);
 
@@ -91,16 +86,14 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getBisectors(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return new double[0];
         }
 
-        double [] triangleBisectors = new double[3];
-
-        triangleBisectors [0] = Math.sqrt(a * b * (a + b + c) * (a + b - c)) / (a + b);
-        triangleBisectors [1] = Math.sqrt(a * c * (a + b + c) * (a + c - b)) / (a + c);
-        triangleBisectors [2] = Math.sqrt(c * b * (a + b + c) * (c + b - a)) / (c + b);
+        double[] triangleBisectors = new double[3];
+        triangleBisectors[0] = Math.sqrt(a * b * (a + b + c) * (a + b - c)) / (a + b);
+        triangleBisectors[1] = Math.sqrt(a * c * (a + b + c) * (a + c - b)) / (a + c);
+        triangleBisectors[2] = Math.sqrt(c * b * (a + b + c) * (c + b - a)) / (c + b);
 
         Arrays.sort(triangleBisectors);
 
@@ -115,21 +108,18 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать пустой массив нулевой длины.
      */
     static double[] getAngles(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return new double[0];
         }
 
-        double [] triangleAngles = new double[3];
-
-        triangleAngles [0] = getAngle(a, b, c);
-        triangleAngles [1] = getAngle(b, c, a);
-        triangleAngles [2] = getAngle(c, a, b);
+        double[] triangleAngles = new double[3];
+        triangleAngles[0] = getAngle(a, b, c);
+        triangleAngles[1] = getAngle(b, c, a);
+        triangleAngles[2] = getAngle(c, a, b);
 
         Arrays.sort(triangleAngles);
 
         return triangleAngles;
-
     }
 
     /**
@@ -140,7 +130,6 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getInscribedCircleRadius(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return -1;
         }
@@ -156,7 +145,6 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getCircumradius(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return -1;
         }
@@ -179,20 +167,17 @@ public class Task5 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static double getAreaAdvanced(double a, double b, double c) {
-
         if (!isRealTriangle(a, b, c)) {
             return -1;
         }
 
         double cosA = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
-
         double sinA = Math.sqrt(1 - cosA * cosA);
 
         return (c * b * sinA) / 2;
     }
 
     static boolean isRealTriangle(double a, double b, double c) {
-
         if (a < 1 || b < 1 || c < 1) {
             return false;
         }
@@ -200,12 +185,9 @@ public class Task5 {
         return ((a + b > c) && (a + c > b) && (c + b > a));
     }
 
-    static double getAngle (double a, double b, double c) {
-
+    static double getAngle(double a, double b, double c) {
         double cosA = ((b * b) + (c * c) - (a * a)) / (2 * b * c);
 
         return (Math.acos(cosA) * 180) / Math.PI;
-
     }
-
 }
