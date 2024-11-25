@@ -37,33 +37,28 @@ public class Task4 {
 
     static String solveEquation(double a, double b, double c) {
 
-        double d = b * b - (4 * a * c);
         double x1;
         double x2;
 
         if (a == 0 & b == 0 & c == 0) {
-            return "Бесконечное множество решений";
+            return "Бесконечное множество решений.";
         }
-
         if (a == 0 & b == 0 & c != 0) {
-            return "Некорректные входные данные";
+            return "Некорректные входные данные.";
         }
 
         if (a == 0) {
-
             x1 = (0 - c) / b;
-
             return "Количество решений: 1. Корень: " + x1;
         }
 
+        double d = b * b - (4 * a * c);
+
         if (d < 0) {
-            return "Количество решений: 0" + ".";
+            return "Количество решений: 0.";
         }
-
         if (d == 0) {
-
             x1 = (0 - b) / (2 * a);
-
             return "Количество решений: 1. Корень: " + x1;
         }
 
@@ -75,6 +70,5 @@ public class Task4 {
         }
 
         return "Количество решений: 2. Корни: " + x2 + ";" + x1;
-
     }
 }
