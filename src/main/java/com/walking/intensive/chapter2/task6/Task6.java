@@ -19,19 +19,11 @@ public class Task6 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static int getLcm(int m, int n) {
-        if (isInvalidValue(m, n)) {
+        if (!isValid(m, n)) {
             return -1;
         }
 
-        int minValue = Math.min(m, n);
-        int maxValue = Math.max(m, n);
-        for (int i = 1; i < maxValue; i++) {
-            int lcm = minValue * i;
-            if (lcm % maxValue == 0) {
-                return lcm;
-            }
-        }
-        return minValue * maxValue;
+        return m * n / getGcd(m, n);
     }
 
     /**
@@ -42,7 +34,7 @@ public class Task6 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static int getGcd(int m, int n) {
-        if (isInvalidValue(m, n)) {
+        if (!isValid(m, n)) {
             return -1;
         }
         if (m == n) {
@@ -70,11 +62,22 @@ public class Task6 {
      * <p>Если входные данные некорректны - метод должен возвращать -1.
      */
     static int getGcdByEuclideanAlgorithm(int m, int n) {
+        if (!isValid(m, n)) {
+            return -1;
+        }
 
-        return getGcd(m, n);
+        return getGcbByRecursionEuclideanAlgorithm(n, m % n);
     }
 
-    static boolean isInvalidValue(int a, int b) {
-        return a < 1 || b < 1;
+    static boolean isValid(int a, int b) {
+        return a > 0 && b > 0;
+    }
+
+    static int getGcbByRecursionEuclideanAlgorithm (int m, int n) {
+        if (n == 0) {
+            return m;
+        }
+
+        return getGcbByRecursionEuclideanAlgorithm(n, m % n);
     }
 }
