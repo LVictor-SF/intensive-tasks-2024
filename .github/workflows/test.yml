@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [opened, reopened, synchronize, review_requested]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Get modified Java files
+        id: get_modified_files
+        run: |
+          MODIFIED_FILES=$(git diff --name-only origin/master... \
+            | grep '\.java$' | grep 'Task' | grep -v 'Test' | tr '\n' ',')
+          MODIFIED_FILES=${MODIFIED_FILES%?}
+          echo "MODIFIED_FILES=$MODIFIED_FILES" >> $GITHUB_ENV
+
+      - name: Filter Task classes and add Test suffix
+        id: filter_task_classes
+        run: |
+          MODIFIED_TASK_CLASSES=$(echo "$MODIFIED_FILES" | tr ',' '\n' || true)
+          TEST_CLASSES=""
+          for file in $MODIFIED_TASK_CLASSES; do
+            test_class=$(echo "${file%.java}Test" | sed 's|^src/main/java/||' | tr '/' '.')
+            TEST_CLASSES="$TEST_CLASSES --tests $test_class"
+          done
+          echo "TEST_CLASSES=$TEST_CLASSES" >> $GITHUB_ENV
+
+      - name: Run Tests
+        run: |
+          if [[ -n "$TEST_CLASSES" ]]; then
+            ./gradlew test $TEST_CLASSES
+          fi
