@@ -25,7 +25,7 @@ public class Task6 {
 
         int minValue = Math.min(m, n);
         int maxValue = Math.max(m, n);
-        for (int i = 1; i < maxValue ; i++) {
+        for (int i = 1; i < maxValue; i++) {
             int lcm = minValue * i;
             if (lcm % maxValue == 0) {
                 return lcm;
