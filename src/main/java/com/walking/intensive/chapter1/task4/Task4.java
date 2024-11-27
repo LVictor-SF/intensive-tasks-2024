@@ -34,10 +34,6 @@ public class Task4 {
     }
 
     static String solveEquation(double a, double b, double c) {
-
-        double x1;
-        double x2;
-
         if (a == 0 & b == 0 & c == 0) {
             return "Бесконечное множество решений.";
         }
@@ -46,8 +42,7 @@ public class Task4 {
         }
 
         if (a == 0) {
-            x1 = (0 - c) / b;
-            return "Количество решений: 1. Корень: " + x1;
+            return "Количество решений: 1. Корень: " + -c / b;
         }
 
         double d = b * b - (4 * a * c);
@@ -56,12 +51,11 @@ public class Task4 {
             return "Количество решений: 0.";
         }
         if (d == 0) {
-            x1 = (0 - b) / (2 * a);
-            return "Количество решений: 1. Корень: " + x1;
+            return "Количество решений: 1. Корень: " + -b / (2 * a);
         }
 
-        x1 = (((0 - b) + Math.sqrt(d)) / (2 * a));
-        x2 = (((0 - b) - Math.sqrt(d)) / (2 * a));
+        double x1 = ((-b + Math.sqrt(d)) / (2 * a));
+        double x2 = ((-b - Math.sqrt(d)) / (2 * a));
 
         if (x2 > x1) {
             return "Количество решений: 2. Корни: " + x1 + ";" + x2;
