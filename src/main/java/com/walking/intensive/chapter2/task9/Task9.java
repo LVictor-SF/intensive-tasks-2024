@@ -51,41 +51,51 @@ package com.walking.intensive.chapter2.task9;
  */
 public class Task9 {
     public static void main(String[] args) {
-        System.out.println(getPascalTriangle(18));
+        System.out.println(getPascalTriangle(25));
     }
 
     static String getPascalTriangle(int n) {
-        String result = "";
-        for (int lineNumber = 1; lineNumber <= n; lineNumber++) {
-            String line = "";
-            for (int j = 0; j < amountOfSpaces(lineNumber, n); j++) {
-                line += " ";
-            }
-            int k = 1;
-            for (int i = 1; i <= lineNumber; i++) {
-                line += k + " ";
-                k = k * (lineNumber - i) / i;
-            }
-
-            result += (line + "\n");
+        String lastLine = "";
+        int k = 1;
+        for (int i = 1; i < n; i++) {
+            lastLine += k + " ";
+            k = k * (n - i) / i;
         }
+        lastLine += k;
+
+        String trianle = "";
+        for (int lineNumber = 1; lineNumber < n; lineNumber++) {
+            trianle += getLineOfPascalTriangle(lineNumber, lastLine.length());
+        }
+
+        return trianle + lastLine;
+    }
+
+    public static String getLineOfPascalTriangle(int lineNumber, int lastLineLength) {
+        String line = "";
+        String result = "";
+        for (int i = 0; i < getAmountOfSpaces(lineNumber, lastLineLength); i++) {
+            line += " ";
+        }
+        int k = 1;
+        for (int i = 1; i < lineNumber; i++) {
+            line += k + " ";
+            k = k * (lineNumber - i) / i;
+        }
+        result += (line + k + "\n");
+
         return result;
     }
 
-    public static int amountOfSpaces(int a, int b) {
+    public static int getAmountOfSpaces(int lineNumber, int lastLineLength) {
         int k = 1;
         String line = "";
-        for (int i = 1; i < a; i++) {
+        for (int i = 1; i < lineNumber; i++) {
             line += (k + " ");
-            k = k * (a - i) / i;
+            k = k * (lineNumber - i) / i;
         }
 
-        String lastLine = "";
-        for (int i = 1; i < b; i++) {
-            lastLine += (k + " ");
-            k = k * (b - i) / i;
-        }
-
-        return (lastLine.length() - line.length()) / 2;
+        return (lastLineLength - line.length()) / 2;
     }
+
 }
