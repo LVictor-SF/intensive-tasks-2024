@@ -27,7 +27,7 @@ package com.walking.intensive.chapter2.task7;
  */
 public class Task7 {
     public static void main(String[] args) {
-        System.out.println(getFriendlyPair(200));
+        System.out.println(getFriendlyPair(10000));
     }
 
     static int getFriendlyPair(int n) {
@@ -35,29 +35,25 @@ public class Task7 {
             return -1;
         }
 
-        int result = 0;
-        int numbersSum = 0;
+        for (int i = n; i > 1; i--) {
+            int num1 = getSumOfDivisors(i);
 
-        for (int i = 2; i < n; i++) {
-            int sum1 = 0;
-            for (int j = 1; j <= i / 2; j++) {
-                if (i % j == 0) {
-                    sum1 += j;
-                }
-            }
-            for (int i2 = 3; i2 < i; i2++) {
-                int sum2 = 0;
-                for (int j2 = 1; j2 <= i2 / 2; j2++) {
-                    if (i2 % j2 == 0) {
-                        sum2 += j2;
-                    }
-                }
-                if (sum1 == i2 && sum2 == i && i + i2 > numbersSum) {
-                    numbersSum = i + i2;
-                    result = i;
-                }
+            if (getSumOfDivisors(num1) != num1 && getSumOfDivisors(num1) == i) {
+                return i;
             }
         }
-        return result;
+        return 0;
+    }
+
+    static int getSumOfDivisors(int n) {
+        int sumOfDivisors = 1;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                sumOfDivisors += i;
+                sumOfDivisors += n / i;
+            }
+        }
+
+        return sumOfDivisors;
     }
 }
