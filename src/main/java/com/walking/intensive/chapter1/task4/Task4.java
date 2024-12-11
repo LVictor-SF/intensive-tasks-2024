@@ -25,7 +25,7 @@ package com.walking.intensive.chapter1.task4;
 
 public class Task4 {
     public static void main(String[] args) {
-        double a = 0;
+        double a = 1;
         double b = 0;
         double c = 5;
 
@@ -51,7 +51,7 @@ public class Task4 {
             return "Количество решений: 0.";
         }
         if (d == 0) {
-            return "Количество решений: 1. Корень: " + -b / (2 * a);
+            return "Количество решений: 1. Корень: " + (-b / (2 * a));
         }
 
         double x1 = ((-b + Math.sqrt(d)) / (2 * a));
