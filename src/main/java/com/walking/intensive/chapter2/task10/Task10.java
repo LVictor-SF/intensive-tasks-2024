@@ -24,14 +24,12 @@ public class Task10 {
 
         String prepared = inputString.replaceAll("[^а-яА-Я]", "").toLowerCase();
 
-        boolean flag = true;
         for (int i = 0; i < prepared.length() / 2; i++) {
             if (prepared.charAt(i) != prepared.charAt(prepared.length() - i - 1)) {
-                flag = false;
-                break;
+                return false;
             }
         }
 
-        return flag;
+        return true;
     }
 }
