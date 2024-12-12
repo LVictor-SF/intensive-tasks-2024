@@ -27,7 +27,7 @@ public class Task4 {
     public static void main(String[] args) {
         double a = 1;
         double b = 0;
-        double c = 5;
+        double c = 0;
 
         System.out.println(solveEquation(a, b, c));
 
@@ -51,7 +51,11 @@ public class Task4 {
             return "Количество решений: 0.";
         }
         if (d == 0) {
-            return "Количество решений: 1. Корень: " + (-b / (2 * a));
+            double x1 = -b / (2 * a);
+            if (x1 == -0.0) {
+                return "Количество решений: 1. Корень: " + 0.0;
+            }
+            return "Количество решений: 1. Корень: " + -b / (2 * a);
         }
 
         double x1 = ((-b + Math.sqrt(d)) / (2 * a));
