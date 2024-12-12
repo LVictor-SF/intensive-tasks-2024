@@ -50,6 +50,7 @@ public class Task4 {
         if (d < 0) {
             return "Количество решений: 0.";
         }
+
         if (d == 0) {
             double x1 = -b / (2 * a);
             if (x1 == -0.0) {
@@ -58,8 +59,8 @@ public class Task4 {
             return "Количество решений: 1. Корень: " + x1;
         }
 
-        double x1 = ((-b + Math.sqrt(d)) / (2 * a));
-        double x2 = ((-b - Math.sqrt(d)) / (2 * a));
+        double x1 = (-b + Math.sqrt(d)) / (2 * a);
+        double x2 = (-b - Math.sqrt(d)) / (2 * a);
 
         if (x2 > x1) {
             return "Количество решений: 2. Корни: " + x1 + ";" + x2;
