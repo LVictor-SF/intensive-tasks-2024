@@ -22,12 +22,31 @@ public class Task10 {
             return false;
         }
 
-        String prepared = inputString.replaceAll("[^а-яА-Я]", "").toLowerCase();
+        inputString = inputString.toLowerCase();
+        int stringLength = inputString.length();
+        int iFromEnd = stringLength - 1;
 
-        for (int i = 0; i < prepared.length() / 2; i++) {
-            if (prepared.charAt(i) != prepared.charAt(prepared.length() - i - 1)) {
+        for (int i = 0; i < stringLength / 2; i++) {
+            while (!isRusLetter(inputString.charAt(i))) {
+                i++;
+            }
+            while (!isRusLetter(inputString.charAt(iFromEnd))) {
+                iFromEnd--;
+            }
+
+            if (inputString.charAt(i) != inputString.charAt(iFromEnd)) {
                 return false;
             }
+            iFromEnd--;
+        }
+
+        return true;
+    }
+
+    public static boolean isRusLetter(char character) {
+        String rusAlphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        if (rusAlphabet.indexOf(character) == -1) {
+            return false;
         }
 
         return true;
